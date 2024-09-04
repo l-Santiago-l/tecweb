@@ -39,7 +39,40 @@
             echo '<p> Lo que ocurre muy probablemente se deba al uso de los PUNTEROS, en primer lugar "$c" se declara como un puntero "al contenido" de a (por lo que al mostrar 
                     su contenido en realidad muestra lo que almacena "$a"), por eso en el inciso "a" podemos ver que "$a" y "$c" tienen el mismo valor. Ahora, para el inciso "b" la variable "$b"
                     se asigna a un puntero hacia "$a", tomando la logica comentada anteriormente, las tres variables muestran el mismo valor (que es lo que observamos). </p>';
-            echo '</ol>';
+            
+
+            #Pregunta 3
+            echo '<b><li> Muestra el contenido de cada variable inmediatamente después de cada asignación,
+                    verificar la evolución del tipo de estas variables (imprime todos los componentes de los
+                    arreglo): </li></b>';
+            echo '<code> &nbsp $a = "PHP5"; <br>
+                &nbsp $z[] = &$a; <br>
+                &nbsp $b = "5ta versión de PHP"; <br>
+                &nbsp $c = $b * 10; <br>
+                &nbsp $a .= $b; <br>
+                &nbsp $b *= $c; <br>
+                &nbsp $z = "MySQL"; <br>
+                </code></b><br>';
+            echo ' Salidas: <br>';
+                $a = "PHP5";
+            echo '"$a => ' . $a . '" <br>';
+            $z[] = &$a;
+            echo '"$z[] => [';
+            foreach($z as $val){
+                echo ' ' . $z[0];
+            }
+            echo ' ]" <br>';
+            $b = '5ta versión de PHP';
+            echo '"$b => ' . $b . '" <br>';
+            $c = $b*10;
+            echo '"$c => ' . $c . '" <br>';
+            $a .= $b;
+            echo '"$a => ' . $a . '" <br>';
+            $b *= $c;
+            echo '"$b => ' . $b . '" <br>';
+            $z = "MySQL";
+            echo '"$z => ' . $z . '" <br>';
+
         ?>
         
     </body>
