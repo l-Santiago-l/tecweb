@@ -79,7 +79,20 @@
             echo 'Valor de $a = ' . $GLOBALS['a'] . '<br>'; 
             echo 'Valor de $b = ' . $GLOBALS['a'] . '<br>'; 
             echo 'Valor de $c = ' . $GLOBALS['a'] . '<br>'; 
-            echo 'Valor de $z[0] = ' . $GLOBALS['z']. '<br>';
+            echo 'Valor de $z[0] = ' . $GLOBALS['z']. '<br><br>';
+
+            #Pregunta 5
+            echo '<b><li> Dar el valor de las variables $a, $b, $c al final del siguiente script: </li></b>';
+            echo '<code> &nbsp $a = "7 personas"; <br>
+            &nbsp $b = (integer) $a; <br>
+            &nbsp $a = "9E3"; <br>
+            &nbsp $c = (double) $a; <br>
+            </code><br>';
+            $a = "7 personas";
+            $b = (integer) $a;
+            $a = "9E3";
+            $c = (double) $a; 
+
         ?>
         
     </body>
