@@ -10,13 +10,13 @@
             echo '<center><h1> Práctica 5 - Manejo de variables en PHP </h1></center>';
             echo '<ol>';
             #Pregunta 1
-            echo '<li> <b> Determina cuúl de las siguientes variables son validas y explica ¿por qué? </b></li>';
+            echo '<b><li>  Determina cuúl de las siguientes variables son validas y explica ¿por qué?</li></b>';
             echo '<br> <code> $_myvar | $_7var | $myvar | $var7 | $_element1 </code>';
             echo '<p> Justificación: Las variables en PHP deben de se indican con el símbolo $, seguido de una letra (mayúscula o minúscula) o guión bajo FORZOSAMENTE, depúes de estos se pueden 
-                    colocar letras, números y caracteres con valores en el rango 127-255 correspondientes en ASCII.</p>';
+                    colocar letras, números y caracteres con valores en el rango 127-255 correspondientes en ASCII.</p><br>';
             
             #Pregunta 2
-            echo '<li> <b> Proporcionar los valores de $a, $b, $c como sigue: </li> <code> &nbsp $a = ManejadorSQL; <br> &nbsp $b = MySQL; <br> &nbsp $c = &$a; </code></b><br>';
+            echo '<b><li> Proporcionar los valores de $a, $b, $c como sigue: </li> <code> &nbsp $a = ManejadorSQL; <br> &nbsp $b = MySQL; <br> &nbsp $c = &$a; </code></b><br>';
             # Aquí se hace la asignación
             $a = "ManejadorSQL";
             $b = 'MySQL';
@@ -38,7 +38,7 @@
             echo '</ol>';
             echo '<p> Lo que ocurre muy probablemente se deba al uso de los PUNTEROS, en primer lugar "$c" se declara como un puntero "al contenido" de a (por lo que al mostrar 
                     su contenido en realidad muestra lo que almacena "$a"), por eso en el inciso "a" podemos ver que "$a" y "$c" tienen el mismo valor. Ahora, para el inciso "b" la variable "$b"
-                    se asigna a un puntero hacia "$a", tomando la logica comentada anteriormente, las tres variables muestran el mismo valor (que es lo que observamos). </p>';
+                    se asigna a un puntero hacia "$a", tomando la logica comentada anteriormente, las tres variables muestran el mismo valor (que es lo que observamos). </p><br>';
             
 
             #Pregunta 3
@@ -52,7 +52,7 @@
                 &nbsp $a .= $b; <br>
                 &nbsp $b *= $c; <br>
                 &nbsp $z = "MySQL"; <br>
-                </code></b><br>';
+                </code><br>';
             echo ' Salidas: <br>';
                 $a = "PHP5";
             echo '"$a => ' . $a . '" <br>';
@@ -71,8 +71,15 @@
             $b *= $c;
             echo '"$b => ' . $b . '" <br>';
             $z = "MySQL";
-            echo '"$z => ' . $z . '" <br>';
-
+            echo '"$z => ' . $z . '" <br><br>';
+            
+            #Pregunta 4
+            echo '<b><li> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
+                    la matriz $GLOBALS o del modificador global de PHP. </li></b>';
+            echo 'Valor de $a = ' . $GLOBALS['a'] . '<br>'; 
+            echo 'Valor de $b = ' . $GLOBALS['a'] . '<br>'; 
+            echo 'Valor de $c = ' . $GLOBALS['a'] . '<br>'; 
+            echo 'Valor de $z[0] = ' . $GLOBALS['z']. '<br>';
         ?>
         
     </body>
