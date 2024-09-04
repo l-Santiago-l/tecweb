@@ -118,7 +118,18 @@
             echo var_dump($f) . '<br>';
             echo '<br> Cambios de valor usando "var_export()": <br>';
             echo "Valor de \$c: " . var_export($c, true) . "<br>"; // FALSE
-            echo "Valor de \$e: " . var_export($e, true) . "<br>"; // FALSE
+            echo "Valor de \$e: " . var_export($e, true) . "<br><br>"; // FALSE
+
+            #Pregunta 7
+            echo '<b><li> Usando la variable predefinida $_SERVER, determina lo siguiente: </li></b>';
+            echo '<ol>';
+            echo '<li> La versión de Apache y PHP</li>';
+            echo $_SERVER['SERVER_SIGNATURE'];
+            echo '<li> El nombre del Sistema Operativo (servidor)</li>';
+            echo $_SERVER['SERVER_SOFTWARE'];
+            echo '<li> El idioma del navegador (cliente)</li>';
+            echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+            echo '</ol>';
         ?>
         
     </body>
