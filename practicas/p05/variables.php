@@ -93,6 +93,32 @@
             $a = "9E3";
             $c = (double) $a; 
 
+            #Pregunta 6
+            echo '<b><li> Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas
+                    usando la función var_dump(<datos>). </li></b>';
+            echo '<code> &nbsp $a = "0"; <br>
+            &nbsp $b = "TRUE"; <br>
+            &nbsp $c = FALSE; <br>
+            &nbsp $d = ($a OR $b); <br>
+            &nbsp $e = ($a AND $c); <br>
+            &nbsp $f = ($a XOR $b); <br>
+            </code><br>';
+            $a = "0";
+            $b = "TRUE";
+            $c = FALSE;
+            $d = ($a OR $b);
+            $e = ($a AND $c);
+            $f = ($a XOR $b);
+            echo ' Resultados: <br>';
+            echo var_dump($a) . '<br>';
+            echo var_dump($b) . '<br>';
+            echo var_dump($c) . '<br>';
+            echo var_dump($d) . '<br>';
+            echo var_dump($e) . '<br>';
+            echo var_dump($f) . '<br>';
+            echo '<br> Cambios de valor usando "var_export()": <br>';
+            echo "Valor de \$c: " . var_export($c, true) . "<br>"; // FALSE
+            echo "Valor de \$e: " . var_export($e, true) . "<br>"; // FALSE
         ?>
         
     </body>
