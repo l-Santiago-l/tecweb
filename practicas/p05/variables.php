@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.1//EN” “http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd”>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
     <head>
@@ -7,6 +7,7 @@
     </head>
     <body>
         <?php
+            error_reporting(E_ERROR | E_PARSE);
             echo '<center><h1> Práctica 5 - Manejo de variables en PHP </h1></center>';
             echo '<ol>';
             #Pregunta 1
@@ -14,7 +15,8 @@
             echo '<br> <code> $_myvar | $_7var | $myvar | $var7 | $_element1 </code>';
             echo '<p> Justificación: Las variables en PHP deben de se indican con el símbolo $, seguido de una letra (mayúscula o minúscula) o guión bajo FORZOSAMENTE, depúes de estos se pueden 
                     colocar letras, números y caracteres con valores en el rango 127-255 correspondientes en ASCII.</p><br>';
-            
+        ?>
+        <?php
             #Pregunta 2
             echo '<b><li> Proporcionar los valores de $a, $b, $c como sigue: </li> <code> &nbsp $a = ManejadorSQL; <br> &nbsp $b = MySQL; <br> &nbsp $c = &$a; </code></b><br>';
             # Aquí se hace la asignación
@@ -40,7 +42,8 @@
                     su contenido en realidad muestra lo que almacena "$a"), por eso en el inciso "a" podemos ver que "$a" y "$c" tienen el mismo valor. Ahora, para el inciso "b" la variable "$b"
                     se asigna a un puntero hacia "$a", tomando la logica comentada anteriormente, las tres variables muestran el mismo valor (que es lo que observamos). </p><br>';
             
-
+        ?>
+        <?php
             #Pregunta 3
             echo '<b><li> Muestra el contenido de cada variable inmediatamente después de cada asignación,
                     verificar la evolución del tipo de estas variables (imprime todos los componentes de los
@@ -54,33 +57,44 @@
                 &nbsp $z = "MySQL"; <br>
                 </code><br>';
             echo ' Salidas: <br>';
-                $a = "PHP5";
+            $a = "PHP5";
             echo '"$a => ' . $a . '" <br>';
-            $z[] = &$a;
+
+            $z[0] = &$a;
             echo '"$z[] => [';
             foreach($z as $val){
-                echo ' ' . $z[0];
+                echo ' ' . $val;
             }
             echo ' ]" <br>';
-            $b = '5ta versión de PHP';
+
+            $b = "5ta versión de PHP";
             echo '"$b => ' . $b . '" <br>';
+
             $c = $b*10;
             echo '"$c => ' . $c . '" <br>';
+
             $a .= $b;
             echo '"$a => ' . $a . '" <br>';
             $b *= $c;
             echo '"$b => ' . $b . '" <br>';
-            $z = "MySQL";
-            echo '"$z => ' . $z . '" <br><br>';
-            
+            $z[0] = "MySQL";
+            echo '"$z[0] => [';
+            foreach($z as $val){
+                echo ' ' . $val;
+            }
+            echo ' ]" <br><br>';
+
+        ?>
+        <?php
             #Pregunta 4
             echo '<b><li> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
                     la matriz $GLOBALS o del modificador global de PHP. </li></b>';
             echo 'Valor de $a = ' . $GLOBALS['a'] . '<br>'; 
-            echo 'Valor de $b = ' . $GLOBALS['a'] . '<br>'; 
-            echo 'Valor de $c = ' . $GLOBALS['a'] . '<br>'; 
-            echo 'Valor de $z[0] = ' . $GLOBALS['z']. '<br><br>';
-
+            echo 'Valor de $b = ' . $GLOBALS['b'] . '<br>'; 
+            echo 'Valor de $c = ' . $GLOBALS['c'] . '<br>'; 
+            echo 'Valor de $z[0] = ' . $GLOBALS['z'][0]. '<br><br>';
+        ?>
+        <?php
             #Pregunta 5
             echo '<b><li> Dar el valor de las variables $a, $b, $c al final del siguiente script: </li></b>';
             echo '<code> &nbsp $a = "7 personas"; <br>
@@ -89,10 +103,15 @@
             &nbsp $c = (double) $a; <br>
             </code><br>';
             $a = "7 personas";
-            $b = (integer) $a;
+            $b = (integer)$a;
             $a = "9E3";
-            $c = (double) $a; 
-
+            $c = (double)$a; 
+            echo "Salidas: <br>";
+            echo '$a = "' . $a . '"<br>';
+            echo '$b = "' . $b . '"<br>';
+            echo '$c = "' . $c . '"<br>';
+        ?>
+        <?php
             #Pregunta 6
             echo '<b><li> Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas
                     usando la función var_dump(<datos>). </li></b>';
@@ -119,15 +138,16 @@
             echo '<br> Cambios de valor usando "var_export()": <br>';
             echo "Valor de \$c: " . var_export($c, true) . "<br>"; // FALSE
             echo "Valor de \$e: " . var_export($e, true) . "<br><br>"; // FALSE
-
+        ?>
+        <?php
             #Pregunta 7
             echo '<b><li> Usando la variable predefinida $_SERVER, determina lo siguiente: </li></b>';
             echo '<ol>';
-            echo '<li> La versión de Apache y PHP</li>';
+            echo '<br><li> La versión de Apache y PHP</li>';
             echo $_SERVER['SERVER_SIGNATURE'];
-            echo '<li> El nombre del Sistema Operativo (servidor)</li>';
+            echo '<br><li> El nombre del Sistema Operativo (servidor)</li>';
             echo $_SERVER['SERVER_SOFTWARE'];
-            echo '<li> El idioma del navegador (cliente)</li>';
+            echo '<br><br><li> El idioma del navegador (cliente)</li>';
             echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
             echo '</ol>';
         ?>
