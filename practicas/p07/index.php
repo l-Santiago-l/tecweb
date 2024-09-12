@@ -21,6 +21,19 @@
                 <p><input type="submit" value="Comprobar"></p>
             </fieldset>
         </form>
+
+        <!-- Ejercicio 2 -->
+        <form method="get">
+            <fieldset>
+                <legend><h2>Ejercicio 2</h2></legend>
+                <p>Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una
+                secuencia compuesta por:</p>
+                <code> impar par impar</code>
+                <ul>
+                    <li><textarea name="a1" rows="4" cols="60" placeholder="Aquí se moestraran los números aleatorios"><?php echo generarNumsA()?></textarea></li>
+                </ul>
+            </fieldset>
+        </form>
         </div>
     </body>
 </html>
