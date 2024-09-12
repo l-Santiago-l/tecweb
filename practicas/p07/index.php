@@ -34,6 +34,27 @@
                 </ul>
             </fieldset>
         </form>
+
+        <!-- Ejercicio 3 -->
+        <form method="get">
+            <fieldset>
+                <legend><h2>Ejercicio 3</h2></legend>
+                <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente,
+                pero que además sea múltiplo de un número dado.</p>
+                <ul>
+                    <li>Número: <input type="number" name="multiplo" placeholder="Num. 0 - 1000"> </li>
+                </ul>
+                <fieldset>
+                    <legend>Con While</legend>    
+                    <?php echo encontrarNumAW()?>
+                </fieldset>
+                <fieldset>
+                    <legend>Con While</legend>
+                    <?php echo encontrarNumADW()?>
+                </fieldset>
+                <p><input type="submit" value="Comprobar">
+            </fieldset>
+        </form>
         </div>
     </body>
 </html>
