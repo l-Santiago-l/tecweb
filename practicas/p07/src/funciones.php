@@ -61,4 +61,17 @@
         }
     }
 
+    function tablaAscii(){
+        $arr = array();
+        for($i = 97; $i <= 122; $i++){
+            $arr[$i] = chr($i);
+        }
+        $tabla = '<table> <tr><td>Código ASCII</td><td>Valor</td></tr>';
+        foreach ($arr as $key => $value){
+            $tabla .= '<tr> <td>'. $key.'</td><td>'. $value . '</td></tr>';
+        }
+        $tabla .= '</table>';
+        return $tabla;
+    }
+
 ?>

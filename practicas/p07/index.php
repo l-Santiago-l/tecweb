@@ -55,6 +55,17 @@
                 <p><input type="submit" value="Comprobar">
             </fieldset>
         </form>
+
+        <!-- Ejercicio 4 -->
+        <form method="get">
+            <fieldset>
+                <legend><h2>Ejercicio 4</h2></legend>
+                <p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la 'a'
+                    a la 'z'. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para poner
+                    el valor en cada índice. Es decir:</p>
+                <?php echo tablaAscii()?>
+            </fieldset>
+        </form>
         </div>
     </body>
 </html>
