@@ -66,6 +66,23 @@
                 <?php echo tablaAscii()?>
             </fieldset>
         </form>
+
+        <!-- Ejercicio 5 -->
+        <form method="post">
+            <fieldset>
+                <legend><h2>Ejercicio 5</h2></legend>
+                <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de
+                    sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de
+                    bienvenida apropiado.</p>
+                <input type="radio" name="S" value="F">Femenino <br>
+                <input type="radio" name="S" value="M">Masculino <br>
+                Edad: <input type="number" name="edad">
+                <br>
+                <?php echo valEdad()?>
+                <br>
+                <input type="submit" value="Comprobar">
+            </fieldset>
+        </form>
         </div>
     </body>
 </html>

@@ -74,4 +74,16 @@
         return $tabla;
     }
 
+    function valEdad(){
+        if(isset($_POST["edad"]) && isset($_POST["S"]))
+        {   
+            $edad = $_POST["edad"];
+            if($_POST["S"] == "F" && ($edad <= 35 && $edad >= 18)){
+                    return "Bienvenida, esta en el rango de edad permitido";
+            }
+            else 
+                return "Lo sentimos, los datos que proprcionaste NO cumplen las condiciones";
+            }
+    }
+
 ?>
