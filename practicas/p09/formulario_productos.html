@@ -1,0 +1,38 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>Registro al Concurso</title>
+        <style type="text/css">
+            ol, ul { 
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Tiendita</h1>
+
+        <form id="formuProductos" action="concurso.php" method="post">
+
+        <h2>Agrega un producto</h2>
+
+        <fieldset>
+            <legend>Información del producto</legend>
+
+            <ul>
+                <li><label for="form-nombre">Nombre:</label> <input type="text" name="nombre" id="form-nombre"></li>
+                <li><label for="form-marca">Marca:</label> <input type="text" name="marca" id="form-marca"></li>
+                <li><label for="form-precio">Precio:</label> <input type="number" name="precio" id="form-precio"></li>
+                <li><label for="form-unidades">Unidades:</label> <input type="number" name="unidades" id="form-unidades"></li>
+                <li><label for="form-img">Imagen:</label> <input type="text" name="img" id="form-img"></li>
+                <li><label for="form-detalles">Detalles del producto...</label><br><textarea name="detalles" rows="4" cols="60" maxlength="250" id="form-detalles" placeholder="No más de 250 caracteres de longitud"></textarea></li>
+            </ul>
+        </fieldset>
+        <p>
+            <input type="submit" value="Guardar">
+            <input type="reset">
+        </p>
+
+        </form>
+    </body>
+</html>
