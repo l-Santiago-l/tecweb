@@ -46,12 +46,11 @@
                     }
 
                     /** Crear una tabla que no devuelve un conjunto de resultados */
-                    # $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
                     $sql = "SELECT * FROM productos WHERE nombre = '$nombre' AND modelo = '$modelo' AND marca = '$marca'";
                     if ($result = $link->query($sql) ){
                         $dat = $result->fetch_array(MYSQLI_ASSOC);
                         if(empty($dat)){
-                            $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+                            $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', '0')";
                             if ($link->query($sql) ){
                 ?>
                         <h1>Datos ingresados:</h1>
