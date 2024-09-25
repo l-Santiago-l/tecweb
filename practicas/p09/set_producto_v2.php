@@ -50,7 +50,9 @@
                     if ($result = $link->query($sql) ){
                         $dat = $result->fetch_array(MYSQLI_ASSOC);
                         if(empty($dat)){
-                            $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', '0')";
+                            #$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', '0')";
+                            $sql = "INSERT INTO productos (id, nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado)
+                            VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', null)";
                             if ($link->query($sql) ){
                 ?>
                         <h1>Datos ingresados:</h1>
