@@ -4,36 +4,76 @@
         <meta charset="utf-8" >
         <title>Registro al Concurso</title>
         <style type="text/css">
-            ol, ul { 
-                list-style-type: none;
+            body{
+                background-color: #8EACCD;
+            }
+            div{
+                align-items: center;
+                width: 65%; 
+                margin-left: 10%;
+                background-color: white;
+            }
+            h1{
+                text-align: center;
+            }
+            #formI{
+                width: 95%;
+            }
+            legend{
+                font-weight: bold;
             }
         </style>
     </head>
     <body>
-        <h1>Tiendita</h1>
-
-        <form id="formProductos" action="set_producto_v2.php" method="post">
-
-        <h2>Agrega un producto</h2>
-
-        <fieldset>
-            <legend>Información del producto</legend>
-
-            <ul>
-                <li><label for="form-nombre">Nombre:</label> <input type="text" name="nombre" id="form-nombre"></li>
-                <li><label for="form-marca">Marca:</label> <input type="text" name="marca" id="form-marca"></li>
-                <li><label for="form-modelo">Modelo:</label> <input type="text" name="modelo" id="form-modelo"></li>
-                <li><label for="form-precio">Precio:</label> <input type="number" name="precio" id="form-precio"></li>
-                <li><label for="form-unidades">Unidades:</label> <input type="number" name="unidades" id="form-unidades"></li>
-                <li><label for="form-img">Imagen:</label> <input type="text" name="img" id="form-img"></li>
-                <li><label for="form-detalles">Detalles del producto...</label><br><textarea name="detalles" rows="4" cols="60" maxlength="250" id="form-detalles" placeholder="No más de 250 caracteres de longitud"></textarea></li>
-            </ul>
-        </fieldset>
-        <p>
-            <input type="submit" value="Guardar">
-            <input type="reset">
-        </p>
-
-        </form>
+        <div>
+            <fieldset>
+                <h1>Formulario para ingresar Productos</h1>
+                <br/>
+                <form id="formProductos" action="set_producto_v2.php" method="post">    
+                    <fieldset>
+                        <legend>Información del producto</legend>
+                        <fieldset>
+                            <legend> Nombre </legend>
+                            <input type="text" name="nombre" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Marca </legend>
+                            <input type="text" name="marca" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Modelo </legend>
+                            <input type="text" name="modelo" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Precio </legend>
+                            <input type="text" name="precio" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Unidades </legend>
+                            <input type="number" name="unidades" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Imagen </legend>
+                            <input type="text" name="img" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Detalles del producto </legend>
+                            <textarea name="detalles" rows="4" cols="60" maxlength="250" id="formI" placeholder="No más de 250 caracteres de longitud"></textarea>
+                        </fieldset>
+                        
+                        <p>
+                            <input type="submit" value="Guardar" id="btn">
+                            <input type="reset" id="btn">
+                        </p>
+                    </fieldset>
+                </form>
+            </fieldset>
+        </div>
     </body>
 </html>
