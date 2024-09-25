@@ -1,0 +1,79 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>Registro al Concurso</title>
+        <style type="text/css">
+            body{
+                background-color: #8EACCD;
+            }
+            div{
+                align-items: center;
+                width: 65%; 
+                margin-left: 10%;
+                background-color: white;
+            }
+            h1{
+                text-align: center;
+            }
+            #formI{
+                width: 95%;
+            }
+            legend{
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <fieldset>
+                <h1>Formulario para ingresar Productos</h1>
+                <br/>
+                <form id="formProductos" action="set_producto_v2.php" method="post">    
+                    <fieldset>
+                        <legend>Información del producto</legend>
+                        <fieldset>
+                            <legend> Nombre </legend>
+                            <input type="text" name="nombre" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Marca </legend>
+                            <input type="text" name="marca" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Modelo </legend>
+                            <input type="text" name="modelo" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Precio </legend>
+                            <input type="text" name="precio" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Unidades </legend>
+                            <input type="number" name="unidades" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Imagen </legend>
+                            <input type="text" name="img" id="formI">
+                        </fieldset>
+                        <br/>
+                        <fieldset>
+                            <legend> Detalles del producto </legend>
+                            <textarea name="detalles" rows="4" cols="60" maxlength="250" id="formI" placeholder="No más de 250 caracteres de longitud"></textarea>
+                        </fieldset>
+                        
+                        <p>
+                            <input type="submit" value="Guardar" id="btn">
+                            <input type="reset" id="btn">
+                        </p>
+                    </fieldset>
+                </form>
+            </fieldset>
+        </div>
+    </body>
+</html>
