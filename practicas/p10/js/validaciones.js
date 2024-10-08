@@ -23,35 +23,46 @@ function validarObligatoriosN(control, lbl, min){
     }
 }
 
-function validarTam(e, control, lbl){
-    var type =  e.inputType
+function validarTam(e, control, lbl, lim){
+    //var type =  e.inputType
     var lbl = document.getElementById(lbl);
-    var valRest = parseInt(lbl.innerHTML);
+    //var valRest = parseInt(lbl.innerHTML);
     var cad = control.value;
-    
-    // deleteContentForward , deleteContentBackward, insertText
-    if(valRest == 0 && type == 'insertText'){
-        alert('Ha llegado al límite de caracteres permitidos');
-        cad = cad.slice(0, -1);
+    if(cad.length > lim){
+        cad = cad.slice(0, lim);
         control.value = cad;
+        lbl.innerHTML = "0";
+        alert("Ha excedido el número máximo de caracteres")
     }
-    else if(type == 'insertText' && valRest > 0){
-        valRest--;
+    else{
+        var aux = lim - parseInt(cad.length);
+        lbl.innerHTML = "" + aux;
+    }
+    /*
+    // deleteContentForward , deleteContentBackward, insertText
+    if(valRest == 0 && (type == 'insertText' || type == "insertFromPaste")){
+        alert('Ha llegado al límite de caracteres permitidos');
+        //cad = cad.slice(0, -1);
+        //control.value = cad;
+        return false;
+    }
+    else if((type == 'insertText' || type == "insertFromPaste") && valRest > 0){
+        valRest = cad.length - valRest;
         lbl.innerHTML = "" + valRest;
     }
     else if(type != 'deleteContentBackward' || type != 'deleteContentForward'){
         valRest++;
         lbl.innerHTML = "" + valRest;
-    }
+    }*/
 }
 
-function vacio(control, lbl, lim){
+/*function vacio(control, lbl, lim){
     var lbl = document.getElementById(lbl);
     var cad = control.value;
     if(cad.length == 0){
         lbl.innerHTML = lim;
     }
-}
+}*/
 
 function valNumRa(e){
     var code = e.which;
@@ -90,7 +101,6 @@ function comprobarVal(){
     if (document.getElementById("inDet").value != '')
         aux++;
     if(aux == 7){
-        alert("Sí");
         return true;
     }
     else{

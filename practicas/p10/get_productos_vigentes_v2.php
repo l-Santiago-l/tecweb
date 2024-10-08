@@ -51,6 +51,7 @@
                 var unidades = data[4].innerHTML;
                 var detalles = data[5].innerHTML;
                 var img = (data[6].querySelector("img")).getAttribute('src');
+                console.log(unidades);
 
                 var urlForm = "formulario_productos_v2.php";
                 var get = "?nombre="+ nombre +"&marca="+ marca +"&modelo="+ modelo +"&precio="+ precio +"&unidades="+ unidades +"&detalles="+ detalles +"&img="+ img;
