@@ -88,15 +88,15 @@
                     <?php
                         foreach($data as $num => $registro):            // Se recorren tuplas
                     ?>
-                    <tr id=<? echo '"'.$registro['id'].'"' ?>>
+                    <tr id=<? echo'"'.$registro['id'].'"' ?>>
                         <th scope='row' class="row-data"> <? echo $registro['id'] ?></th>
-                        <td class="row-data"> <? echo $registro['nombre'] ?> </td>
-                        <td class="row-data"> <? echo $registro['marca'] ?> </td>
-                        <td class="row-data"> <? echo $registro['modelo'] ?> </td>
-                        <td class="row-data"> <? echo $registro['precio'] ?> </td>
-                        <td class="row-data"> <? echo $registro['unidades'] ?> </td>
-                        <td class="row-data"> <? echo $registro['detalles'] ?> </td>
-                        <td class="row-data"><img src = <? echo "'".$registro['imagen']."'"?> width = 50% height = 30%  ></td>
+                        <td class="row-data"> <? echo$registro['nombre'] ?> </td>
+                        <td class="row-data"> <? echo$registro['marca'] ?> </td>
+                        <td class="row-data"> <? echo$registro['modelo'] ?> </td>
+                        <td class="row-data"> <? echo$registro['precio'] ?> </td>
+                        <td class="row-data"> <? echo$registro['unidades'] ?> </td>
+                        <td class="row-data"> <? echo$registro['detalles'] ?> </td>
+                        <td class="row-data"><img src = <? echo"'".$registro['imagen']."'"?> width = 50% height = 30%  ></td>
                         <td><input type="image" src="img/editar.svg" onclick="enviarD()"></td>
                     </tr>
 

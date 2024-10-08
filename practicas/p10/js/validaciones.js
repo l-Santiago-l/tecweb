@@ -96,7 +96,7 @@ function comprobarVal(){
         aux++;
     if (document.getElementById("inImg").value == ''){
         aux++;
-        document.getElementById("inImg").value = 'img\\default.jpg'
+        document.getElementById("inImg").value = 'img/default.jpg'
     }
     if (document.getElementById("inDet").value != '')
         aux++;
