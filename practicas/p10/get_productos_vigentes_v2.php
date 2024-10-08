@@ -34,7 +34,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Busca tus productos</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <script>
             function enviarD() {
                 // se obtiene el id de la fila donde está el botón presinado
@@ -101,7 +100,7 @@
                     </tr>
 
                     <?php
-                        endforeach
+                        endforeach;
                     ?>
                 </tbody>
             </table>
