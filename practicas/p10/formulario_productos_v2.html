@@ -46,7 +46,7 @@
                         <fieldset>
                             <legend> Nombre </legend> <!-- Requerido y tener 100 caracteres o menos" -->
                             <label id="lblNombre" class="lblsCa">100</label>
-                            <input type="text" name="nombre" id="inNom" class="formI" oninput="return validarTam(event, this, 'lblNombre', 100);" onblur="validarObligatoriosL(this, 'lblNombreA');"><br/>
+                            <input type="text" name="nombre" id="inNom" class="formI" oninput="validarTam(event, this, 'lblNombre', 100);" onblur="validarObligatoriosL(this, 'lblNombreA');"><br/>
                             <label id="lblNombreA" class="lblsAdv"><strong> Este campo es obligatorio</strong></label>
                         </fieldset>
                         <br/>
