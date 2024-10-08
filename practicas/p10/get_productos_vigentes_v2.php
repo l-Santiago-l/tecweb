@@ -44,17 +44,18 @@
                 var data = document.getElementById(rowId).querySelectorAll(".row-data");
 
                 // Separamos cada dato
-                var nombre = data[0].innerHTML;
-                var marca = data[1].innerHTML;
-                var modelo = data[2].innerHTML;
-                var precio = data[3].innerHTML;
-                var unidades = data[4].innerHTML;
-                var detalles = data[5].innerHTML;
-                var img = (data[6].querySelector("img")).getAttribute('src');
-                console.log(unidades);
+                var id = data[0].innerHTML;
+                var nombre = data[1].innerHTML;
+                var marca = data[2].innerHTML;
+                var modelo = data[3].innerHTML;
+                var precio = data[4].innerHTML;
+                var unidades = data[5].innerHTML;
+                var detalles = data[6].innerHTML;
+                var img = (data[7].querySelector("img")).getAttribute('src');
+                console.log(nombre);
 
                 var urlForm = "formulario_productos_v2.php";
-                var get = "?nombre="+ nombre +"&marca="+ marca +"&modelo="+ modelo +"&precio="+ precio +"&unidades="+ unidades +"&detalles="+ detalles +"&img="+ img;
+                var get = "?id="+ id +"&nombre="+ nombre +"&marca="+ marca +"&modelo="+ modelo +"&precio="+ precio +"&unidades="+ unidades +"&detalles="+ detalles +"&img="+ img;
                 window.open(urlForm+get);
                 /*var urlForm = "formulario.php";
                 var propName = "nombre="+name;
@@ -88,7 +89,7 @@
                         foreach($data as $num => $registro):            // Se recorren tuplas
                     ?>
                     <tr id=<? echo '"'.$registro['id'].'"' ?>>
-                        <th scope='row'> <? echo $registro['id'] ?></th>
+                        <th scope='row' class="row-data"> <? echo $registro['id'] ?></th>
                         <td class="row-data"> <? echo $registro['nombre'] ?> </td>
                         <td class="row-data"> <? echo $registro['marca'] ?> </td>
                         <td class="row-data"> <? echo $registro['modelo'] ?> </td>

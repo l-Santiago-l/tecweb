@@ -37,10 +37,14 @@
     </head>
     <body>
         <div>
+            <?php 
+                session_start();
+                $_SESSION['id'] = (!empty($_POST['id'])?$_POST['id']:$_GET['id']);
+            ?>
             <fieldset>
                 <h1>Formulario para ingresar Productos</h1>
                 <br/>
-                <form id="formProductos" action="set_producto_v2.php" method="post">    
+                <form id="formProductos" action="update_producto.php" method="post">    
                     <fieldset>
                         <legend>Información del producto</legend>
                         <fieldset>
@@ -95,7 +99,7 @@
                         </fieldset>
                         
                         <p>
-                            <input type="submit" value="Guardar" id="btn" onclick="return comprobarVal()">
+                            <input type="submit" value="Editar" id="btn" onclick="return comprobarVal()">
                             <input type="reset" id="btn">
                         </p>
                     </fieldset>
