@@ -83,7 +83,7 @@ function valNumNa(e){
 }
 
 function comprobarVal(){
-    var aux = 0;
+    var aux = 1;
     if (document.getElementById("inNom").value != '')
         aux++;
     if (document.getElementById("inMarca").value != '')
@@ -95,7 +95,6 @@ function comprobarVal(){
     if (document.getElementById("inUni").value != '')
         aux++;
     if (document.getElementById("inImg").value == ''){
-        aux++;
         document.getElementById("inImg").value = 'img/default.jpg'
     }
     if (document.getElementById("inDet").value != '')
