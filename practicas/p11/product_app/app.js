@@ -8,6 +8,42 @@ var baseJSON = {
     "imagen": "img/default.png"
   };
 
+// Funión para el like
+function llenarLista(e){
+    e.preventDefault();
+    var carac = document.getElementById('search').value;
+    console.log(carac)
+    var lista = document.getElementById('opciones');
+    var client = getXMLHttpRequest();
+    client.open('POST', './backend/read.php', true);
+    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    client.onreadystatechange = function () {
+        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
+        if (client.readyState == 4 && client.status == 200) {
+            //console.log('[CLIENTE]\n'+client.responseText);
+            lista.innerHTML = "";
+            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+            //let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
+            try {
+                let productos = JSON.parse(client.responseText); // Parsear JSON
+                console.log(productos); // Verificar el contenido
+                // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+                productos.forEach(element => {
+                    lista.append(element['id'] + " - " + element['nombre']);
+                });
+                if(productos.length > 0) {
+                    console.log(productos.length);
+                    
+                }
+            } catch (e) {
+                console.error("No se pudo parsear el JSON:", e, client.responseText); // Mostrar el error y la respuesta
+            }
+        }
+    };
+client.send("carac="+carac);
+}
+
 // FUNCIÓN CALLBACK DE BOTÓN "Buscar"
 function buscarID(e) {
     /**
