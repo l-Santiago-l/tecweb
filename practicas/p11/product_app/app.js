@@ -96,13 +96,18 @@ function buscarID(e) {
     client.send("id="+id);
 }
 
+function validaciones(datProductos){
+
+}
+
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
     e.preventDefault();
 
     // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
     var productoJsonString = document.getElementById('description').value;
-    console.log(productoJsonString);
+    console.log("aquí"+productoJsonString);
+    datProductos(productoJsonString)
     // SE CONVIERTE EL JSON DE STRING A OBJETO
     var finalJSON = JSON.parse(productoJsonString);
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
@@ -121,7 +126,7 @@ function agregarProducto(e) {
             window.alert(client.responseText)
         }
     };
-    client.send(productoJsonString);
+    //client.send(productoJsonString);
 }
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
