@@ -102,6 +102,7 @@ function agregarProducto(e) {
 
     // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
     var productoJsonString = document.getElementById('description').value;
+    console.log(productoJsonString);
     // SE CONVIERTE EL JSON DE STRING A OBJETO
     var finalJSON = JSON.parse(productoJsonString);
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
@@ -116,7 +117,8 @@ function agregarProducto(e) {
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
+            //console.log(client.responseText);
+            window.alert(client.responseText)
         }
     };
     client.send(productoJsonString);

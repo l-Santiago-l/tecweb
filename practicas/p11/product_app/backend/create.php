@@ -6,11 +6,27 @@
     if(!empty($producto)) {
         // SE TRANSFORMA EL STRING DEL JASON A OBJETO
         $jsonOBJ = json_decode($producto);
+        $nombre = $jsonOBJ->nombre;
+        $marca  = $jsonOBJ->marca;
+        $modelo = $jsonOBJ->modelo;
+        $precio = $jsonOBJ->precio;
+        $detalles = $jsonOBJ->detalles;
+        $unidades = $jsonOBJ->unidades;
+        $imagen   = $jsonOBJ->imagen;
+        $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen)
+                            VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+        if ($conexion->query($sql) ){
+            $msj = "Se logró";
+        }
+        else{
+            $msj = "GG";
+        }
+        
         /**
          * SUSTITUYE LA SIGUIENTE LÍNEA POR EL CÓDIGO QUE REALICE
          * LA INSERCIÓN A LA BASE DE DATOS. COMO RESPUESTA REGRESA
          * UN MENSAJE DE ÉXITO O DE ERROR, SEGÚN SEA EL CASO.
          */
-        echo '[SERVIDOR] Nombre: '.$jsonOBJ->nombre;
+        echo '[SERVIDOR] '. $msj;
     }
 ?>
