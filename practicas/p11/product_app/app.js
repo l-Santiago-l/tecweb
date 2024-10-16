@@ -12,8 +12,8 @@ var baseJSON = {
 function llenarLista(e){
     e.preventDefault();
     var carac = document.getElementById('search').value;
-    console.log(carac)
-    var lista = document.getElementById('opciones');
+    //console.log(carac)
+    var lista = document.getElementById('idProductos');
     var client = getXMLHttpRequest();
     client.open('POST', './backend/read.php', true);
     client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -22,20 +22,21 @@ function llenarLista(e){
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
             //console.log('[CLIENTE]\n'+client.responseText);
-            lista.innerHTML = "";
+            while (lista.firstChild) {
+                lista.removeChild(lista.firstChild);
+            }
             // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
             //let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
             try {
                 let productos = JSON.parse(client.responseText); // Parsear JSON
-                console.log(productos); // Verificar el contenido
+                //console.log(productos); // Verificar el contenido
                 // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-                productos.forEach(element => {
-                    lista.append(element['id'] + " - " + element['nombre']);
+                productos.forEach((element, index) => {
+                    let opcion = document.createElement('option');
+                    opcion.value = element['id'];
+                    opcion.textContent = element['nombre'];
+                    lista.appendChild(opcion);
                 });
-                if(productos.length > 0) {
-                    console.log(productos.length);
-                    
-                }
             } catch (e) {
                 console.error("No se pudo parsear el JSON:", e, client.responseText); // Mostrar el error y la respuesta
             }
@@ -105,26 +106,40 @@ function validaciones(datProductos){
     var detalles = datProductos['detalles'];
     var imagen = datProductos['imagen'];
     var vali = 1;
-    console.log(nombre + " " + precio + " " + unidades + " " + modelo + " " + marca + " " + detalles + " " + imagen )
-
-    if(nombre.length > 0 && nombre.length <= 100)
-        vali++; console.log("sí1")
-    if(marca.length > 0)
-        vali++; console.log("sí2")
-    if(modelo.length > 0 && modelo.length <= 25)
-        vali++; console.log("sí3")
-    if(precio.length > 0 && parseFloat(precio) > 99.9)
-        vali++; console.log("sí4")
-    if(detalles.length <= 255)
-        vali++; console.log("sí5")
-    if(unidades.length > 0 && parseInt(unidades) >= 0)
-        vali++; console.log("sí16" + vali)
-    if(imagen.length == 0)
-        imagen = "img/default.jpg"
-    if(vali == 7)
-        return true;
-    else
-        return false;
+    //console.log(nombre + " " + precio + " " + unidades + " " + modelo + " " + marca + " " + detalles + " " + imagen )
+    if(nombre.length > 0 && nombre.length <= 100){
+        vali++;
+    }
+    if(marca.length > 0){
+        vali++;
+    }
+    if(modelo.length > 0 && modelo.length <= 25){
+        vali++;
+    }
+    if(!isNaN(precio) > 0 && parseFloat(precio) > 99.9){
+        vali++;
+    }
+        
+    if(detalles.length <= 255){
+        vali++;
+    }
+        
+    if(!isNaN(unidades) > 0 && parseInt(unidades) >= 0){
+        vali++;
+    }
+    if(imagen.length == 0){
+        vali++;
+        //datProductos['imagen']= "img/default.jpg"
+        //console.log(datProductos['imagen'])
+    }
+    switch(vali){
+        case 7:
+            return 1;
+        case 8:
+            return 2;
+        default:
+            return 0;
+    }
 }
 
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
@@ -133,15 +148,19 @@ function agregarProducto(e) {
 
     // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
     var productoJsonString = document.getElementById('description').value;
-    console.log("aquí"+productoJsonString);
+    //console.log("aquí"+productoJsonString);
     // SE CONVIERTE EL JSON DE STRING A OBJETO
     var finalJSON = JSON.parse(productoJsonString);
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
     finalJSON['nombre'] = document.getElementById('name').value;
     // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
-    if(validaciones(finalJSON)){
+    let comp = validaciones(finalJSON);
+    if(comp != 0){
+        if(comp == 2)
+            finalJSON['imagen']= "img/default.jpg";
+        productoJsonString = JSON.stringify(finalJSON,null,2);
         // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+        console.log("aquí"+productoJsonString);
         var client = getXMLHttpRequest();
         client.open('POST', './backend/create.php', true);
         client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");

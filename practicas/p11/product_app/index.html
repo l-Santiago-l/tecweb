@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <title>Product App</title>
@@ -12,9 +12,10 @@
       
         <ul></ul>
         <form>
-          <input name="search" id="search" type="search" placeholder="ID/Nombre/Marca/Detalles" onkeyup="llenarLista(event)">
+          <input name="search" id="search" type="search" placeholder="ID/Nombre/Marca/Detalles" list="idProductos" onkeyup="llenarLista(event)">
           <button type="submit" onclick="buscarID(event)">Buscar</button> <br>
-          <ul id = "opciones"></ul>
+          <datalist id="idProductos"></datalist>
+          <!--<ul id = "opciones"></ul>-->
         </form>
     </nav>
 

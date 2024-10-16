@@ -27,7 +27,7 @@
         $carac = $_POST['carac'];
         // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
         #$result = $conexion->query("SELECT id, nombre FROM productos WHERE nombre = '{$id}' LIKE ? LIMIT 0, 5")
-        $consulta = "SELECT id, nombre FROM productos 
+        $consulta = "SELECT DISTINCT id, nombre FROM productos 
                         WHERE nombre LIKE '%{$carac}%'
                         OR detalles LIKE '%{$carac}%'
                         OR marca LIKE '%{$carac}%'
@@ -44,7 +44,7 @@
                 }*/
                 foreach($row as $num => $registro) {            // Se recorren tuplas
                     foreach($registro as $key => $value) {      // Se recorren campos
-                        $data[$num][$key] = utf8_encode($value);
+                        $data[$num][$key] = ($value);
                     }
                 }
             }
