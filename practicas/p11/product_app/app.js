@@ -116,7 +116,7 @@ function validaciones(datProductos){
     if(modelo.length > 0 && modelo.length <= 25){
         vali++;
     }
-    if(!isNaN(precio) > 0 && parseFloat(precio) > 99.9){
+    if(!isNaN(precio) > 0 && (parseFloat(precio) > 99.9)){
         vali++;
     }
         
@@ -127,7 +127,7 @@ function validaciones(datProductos){
     if(!isNaN(unidades) > 0 && parseInt(unidades) >= 0){
         vali++;
     }
-    if(imagen.length == 0){
+    if(imagen.length == 0 && vali == 7){
         vali++;
         //datProductos['imagen']= "img/default.jpg"
         //console.log(datProductos['imagen'])
@@ -171,11 +171,11 @@ function agregarProducto(e) {
                 window.alert(client.responseText)
             }
         };
-        //client.send(productoJsonString);
-        window.alert("Si se puede :P");
+        client.send(productoJsonString);
+        window.alert("[CLIENTE]: Los datos son validos :D");
     }
     else
-        window.alert("Los datos dados son invalidos, intentelo de nuevo");
+        window.alert("[CLIENTE]: Los datos dados son invalidos, intentelo de nuevo");
 }
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR

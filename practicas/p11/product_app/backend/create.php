@@ -15,22 +15,22 @@
         $imagen   = $jsonOBJ->imagen;
         // Primero validamos que no exista un producto con el mismo nombre y que NO este eliminado (0)
         $sql = "SELECT * FROM productos WHERE nombre = '$nombre' AND eliminado = '0'";
-        if ($result = $link->query($sql) ){
+        if ($result = $conexion->query($sql) ){
             $dat = $result->fetch_array(MYSQLI_ASSOC);
             if(empty($dat)){
                 $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen)
                         VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
                 if ($conexion->query($sql) ){
-                    $msj = "Se ha INSERTADO correctamente el producto :D";
+                    $msj = "[Servidor]: Se ha INSERTADO correctamente el producto :D";
                 }
                 else
-                    $msj = "Ha ocurrido un ERROR al tratar de insertar el producto, intentelo de nuevo :c";
+                    $msj = "[Servidor]: Ha ocurrido un ERROR al tratar de insertar el producto, intentelo de nuevo :c";
             }
             else
-                $msj = "El producto YA EXISTE y esta";
+                $msj = "[Servidor]: El producto YA EXISTE y esta activo";
         }
         else
-            $msj = "Ha ocurrido un error al comprobar la existencia del producto :c"; 
+            $msj = "[Servidor]: Ha ocurrido un error al comprobar la existencia del producto :c"; 
         
         
         /**
