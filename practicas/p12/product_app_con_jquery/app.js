@@ -18,7 +18,7 @@ function init() {
     document.getElementById("description").value = JsonString;
     $('#product-result').hide(); 
     // SE LISTAN TODOS LOS PRODUCTOS
-    //listarProductos();
+    listarProductos();
 
     // Apartir de aquí estan las funciones que  hacen lo mismo que las anteriores, pero ahora con JQuery
 
@@ -82,11 +82,43 @@ function init() {
             document.getElementById("product-result").className = "card my-4 d-block";
             // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
             document.getElementById("container").innerHTML = template_bar;
-            // FALTA LO DE LISTAR
+            listarProductos();
         });
     });
 
+    $(document).on('click', '.product-delete', function(){
+        if(confirm("¿Estas seguro de querer eliminar este producto?")){
+            let product = $(this)[0].parentElement.parentElement; 
+            let id = $(product).attr('productId');
+            $.ajax({
+                url: './backend/product-delete.php',
+                type: 'GET',
+                data: {id},
+                success: function (response){
+                    let respuesta = JSON.parse(response);
+                    let template_bar = '';
+                    template_bar += `
+                                <li style="list-style: none;">status: ${respuesta.status}</li>
+                                <li style="list-style: none;">message: ${respuesta.message}</li>
+                            `;
 
+                    // SE HACE VISIBLE LA BARRA DE ESTADO
+                    document.getElementById("product-result").className = "card my-4 d-block";
+                    // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
+                    document.getElementById("container").innerHTML = template_bar;
+                    listarProductos();
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '.product-item', function(){
+        let product = $(this)[0].parentElement.parentElement; 
+        let id = $(product).attr('productId');
+    });
+}
+
+function listarProductos(){
     $.ajax({
         url: './backend/product-list.php',
         type: 'GET',
@@ -108,10 +140,12 @@ function init() {
                 template += `
                     <tr productId="${producto.id}">
                         <td>${producto.id}</td>
-                        <td>${producto.nombre}</td>
+                        <td>
+                            <a href="#" class = "product-item">${producto.nombre}</a>
+                        </td>
                         <td><ul>${descripcion}</ul></td>
                         <td>
-                            <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                            <button class="product-delete btn btn-danger"">
                                 Eliminar
                             </button>
                         </td>
