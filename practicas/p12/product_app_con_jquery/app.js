@@ -20,6 +20,8 @@ function init() {
     listarProductos();
 }
 
+// Todo lo demás se elimina pero lo voy a comentar por si las dudes
+/*
 // FUNCIÓN CALLBACK AL CARGAR LA PÁGINA O AL AGREGAR UN PRODUCTO
 function listarProductos() {
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
@@ -78,7 +80,7 @@ function buscarProducto(e) {
      * Revisar la siguiente información para entender porqué usar event.preventDefault();
      * http://qbit.com.mx/blog/2013/01/07/la-diferencia-entre-return-false-preventdefault-y-stoppropagation-en-jquery/#:~:text=PreventDefault()%20se%20utiliza%20para,escuche%20a%20trav%C3%A9s%20del%20DOM
      * https://www.geeksforgeeks.org/when-to-use-preventdefault-vs-return-false-in-javascript/
-     */
+     / 
     e.preventDefault();
 
     // SE OBTIENE EL ID A BUSCAR
@@ -161,7 +163,7 @@ function agregarProducto(e) {
  * ...
  * 
  * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
- */
+ /
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
     var client = getXMLHttpRequest();
@@ -238,7 +240,7 @@ function getXMLHttpRequest() {
         /**
          * NOTA: Las siguientes formas de crear el objeto ya son obsoletas
          *       pero se comparten por motivos historico-académicos.
-         */
+         /
         try{
             // IE7 y IE8
             objetoAjax = new ActiveXObject("Msxml2.XMLHTTP");
@@ -252,4 +254,4 @@ function getXMLHttpRequest() {
         }
     }
     return objetoAjax;
-}
+}*/
