@@ -6,7 +6,8 @@ var baseJSON = {
     "marca": "NA",
     "detalles": "NA",
     "imagen": "img/default.png"
-  };
+    };
+
 
 function init() {
     /**
@@ -21,7 +22,7 @@ function init() {
 
     // Apartir de aquí estan las funciones que  hacen lo mismo que las anteriores, pero ahora con JQuery
 
-    $('#search').keyup(function() { // Esto sustituye listarProductos
+    $('#search').keyup(function() { 
         $('#product-result').hide();
         if($('#search').val()){
             let search = $('#search').val();
@@ -45,6 +46,43 @@ function init() {
             })
         }
     })
+
+    $('#product-form').submit(function(e){
+        // Evitamos que se recarge la pagina
+        e.preventDefault();
+        var productoJsonString = document.getElementById('description').value;
+        var finalJSON = JSON.parse(productoJsonString);
+        finalJSON['nombre'] = document.getElementById('name').value;
+        productoJsonString = JSON.stringify(finalJSON,null,2);
+        //console.log(finalJSON);
+        const postData = {
+            // "precio", "unidades" , "modelo", "marca", "detalles", "imagen", "nombre"
+            /*nombre: finalJSON['nombre'],
+            precio: finalJSON['precio'],
+            unidades: finalJSON['unidades'],
+            modelo: finalJSON['modelo'],
+            marca: finalJSON['marca'],
+            detalles: finalJSON['detalles'],
+            imagen: finalJSON['imagen'],*/
+            obj: productoJsonString
+        };
+        $.post('./backend/product-add.php', postData, function(response){
+            //console.log(response);
+            let respuesta = JSON.parse(response);
+            // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
+            let template_bar = '';
+            template_bar += `
+                        <li style="list-style: none;">status: ${respuesta.status}</li>
+                        <li style="list-style: none;">message: ${respuesta.message}</li>
+                    `;
+
+            // SE HACE VISIBLE LA BARRA DE ESTADO
+            document.getElementById("product-result").className = "card my-4 d-block";
+            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
+            document.getElementById("container").innerHTML = template_bar;
+            // FALTA LO DE LISTAR
+        });
+    });
 }
 
 // Todo lo demás se elimina pero lo voy a comentar por si las dudes
