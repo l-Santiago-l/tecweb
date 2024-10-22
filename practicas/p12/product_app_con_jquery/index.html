@@ -43,7 +43,7 @@
                 </div>
                 <input type="hidden" id="productId">
                 <!--<button class="btn btn-primary btn-block text-center" type="submit" onclick="agregarProducto(event)">-->
-                <button class="btn btn-primary btn-block text-center" type="submit"></button>
+                <button class="btn btn-primary btn-block text-center" type="submit">
                   Agregar Producto
                 </button>
               </form>
@@ -53,10 +53,11 @@
 
         <!-- TABLA  -->
         <div class="col-md-7">
-          <div class="card my-4 d-none" id="product-result">
+          <div class="card my-4" id="product-result"> <!-- Quité el d-none del class-->
             <div class="card-body">
               <!-- RESULTADO -->
-              <ul id="container"></ul>
+              <ul id="container">
+              </ul>
             </div>
           </div>
 

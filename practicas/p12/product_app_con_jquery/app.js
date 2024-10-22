@@ -15,9 +15,36 @@ function init() {
      */
     var JsonString = JSON.stringify(baseJSON,null,2);
     document.getElementById("description").value = JsonString;
-
+    $('#product-result').hide(); 
     // SE LISTAN TODOS LOS PRODUCTOS
-    listarProductos();
+    //listarProductos();
+
+    // Apartir de aquí estan las funciones que  hacen lo mismo que las anteriores, pero ahora con JQuery
+
+    $('#search').keyup(function() { // Esto sustituye listarProductos
+        $('#product-result').hide();
+        if($('#search').val()){
+            let search = $('#search').val();
+            $.ajax({
+                url: './backend/product-search.php',
+                type: 'POST',
+                data: {search}, // Tambien podría ser {search: search}
+                success: function(response){
+                    //console.log(response)
+                    let products = JSON.parse(response);
+                    let template = '';
+                    products.forEach(producto => {
+                        template += `
+                            <li> ${producto.id} - ${producto.nombre} </li>
+                        `;
+                    });
+                    console.log(template);
+                    $('#container').html(template);
+                    $('#product-result').show();
+                }
+            })
+        }
+    })
 }
 
 // Todo lo demás se elimina pero lo voy a comentar por si las dudes
