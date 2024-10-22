@@ -67,6 +67,8 @@ function init() {
             obj: productoJsonString
         };
         $.post('./backend/product-add.php', postData, function(response){
+            $('#product-form').trigger('reset');
+            document.getElementById("description").value = JsonString;
             //console.log(response);
             let respuesta = JSON.parse(response);
             // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
@@ -83,6 +85,43 @@ function init() {
             // FALTA LO DE LISTAR
         });
     });
+
+
+    $.ajax({
+        url: './backend/product-list.php',
+        type: 'GET',
+        success: function (response){
+            let productos = JSON.parse(response);
+            let template = '';
+            productos.forEach(producto => {
+                // SE COMPRUEBA QUE SE OBTIENE UN OBJETO POR ITERACIÓN
+                //console.log(producto);
+
+                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
+                let descripcion = '';
+                descripcion += '<li>precio: '+producto.precio+'</li>';
+                descripcion += '<li>unidades: '+producto.unidades+'</li>';
+                descripcion += '<li>modelo: '+producto.modelo+'</li>';
+                descripcion += '<li>marca: '+producto.marca+'</li>';
+                descripcion += '<li>detalles: '+producto.detalles+'</li>';
+            
+                template += `
+                    <tr productId="${producto.id}">
+                        <td>${producto.id}</td>
+                        <td>${producto.nombre}</td>
+                        <td><ul>${descripcion}</ul></td>
+                        <td>
+                            <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+            $("#products").html(template);
+        }
+    })
 }
 
 // Todo lo demás se elimina pero lo voy a comentar por si las dudes
