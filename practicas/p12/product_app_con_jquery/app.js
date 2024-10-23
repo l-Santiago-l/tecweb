@@ -55,50 +55,57 @@ function init() {
         var finalJSON = JSON.parse(productoJsonString);
         finalJSON['nombre'] = document.getElementById('name').value;
         finalJSON['id'] = document.getElementById('productId').value
-        productoJsonString = JSON.stringify(finalJSON,null,2);
-        //console.log(finalJSON);
-        const postData = {
-            // "precio", "unidades" , "modelo", "marca", "detalles", "imagen", "nombre"
-            /*nombre: finalJSON['nombre'],
-            precio: finalJSON['precio'],
-            unidades: finalJSON['unidades'],
-            modelo: finalJSON['modelo'],
-            marca: finalJSON['marca'],
-            detalles: finalJSON['detalles'],
-            imagen: finalJSON['imagen'],*/
-            obj: productoJsonString
-        };
-
-        let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-
-        $.post(url, postData, function(response){
-            $('#product-form').trigger('reset');
-            //console.log(response);
-            baseJSON = {
-                "precio": 0.0,
-                "unidades": 1,
-                "modelo": "XX-000",
-                "marca": "NA",
-                "detalles": "NA",
-                "imagen": "img/default.png"
+        let comp = validaciones(finalJSON);
+        if(comp != 0){
+            if(comp == 2)
+                finalJSON['imagen']= "img/default.jpg";
+            productoJsonString = JSON.stringify(finalJSON,null,2);
+            //console.log(finalJSON);
+            const postData = {
+                // "precio", "unidades" , "modelo", "marca", "detalles", "imagen", "nombre"
+                /*nombre: finalJSON['nombre'],
+                precio: finalJSON['precio'],
+                unidades: finalJSON['unidades'],
+                modelo: finalJSON['modelo'],
+                marca: finalJSON['marca'],
+                detalles: finalJSON['detalles'],
+                imagen: finalJSON['imagen'],*/
+                obj: productoJsonString
             };
-            JsonString = JSON.stringify(baseJSON,null,2);
-            document.getElementById("description").value = JsonString;
-            //console.log(response);
-            let respuesta = JSON.parse(response);
-            // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
-            let template_bar = '';
-            template_bar += `
-                        <li style="list-style: none;">status: ${respuesta.status}</li>
-                        <li style="list-style: none;">message: ${respuesta.message}</li>
-                    `;
 
-            // SE HACE VISIBLE LA BARRA DE ESTADO
-            document.getElementById("product-result").className = "card my-4 d-block";
-            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-            document.getElementById("container").innerHTML = template_bar;
-            listarProductos();
-        });
+            let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+
+            $.post(url, postData, function(response){
+                $('#product-form').trigger('reset');
+                //console.log(response);
+                baseJSON = {
+                    "precio": 0.0,
+                    "unidades": 1,
+                    "modelo": "XX-000",
+                    "marca": "NA",
+                    "detalles": "NA",
+                    "imagen": "img/default.png"
+                };
+                JsonString = JSON.stringify(baseJSON,null,2);
+                document.getElementById("description").value = JsonString;
+                //console.log(response);
+                let respuesta = JSON.parse(response);
+                // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
+                let template_bar = '';
+                template_bar += `
+                            <li style="list-style: none;">status: ${respuesta.status}</li>
+                            <li style="list-style: none;">message: ${respuesta.message}</li>
+                        `;
+
+                // SE HACE VISIBLE LA BARRA DE ESTADO
+                document.getElementById("product-result").className = "card my-4 d-block";
+                // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
+                document.getElementById("container").innerHTML = template_bar;
+                listarProductos();
+            });
+        }
+        else
+            window.alert("[CLIENTE]: Los datos dados son invalidos, intentelo de nuevo");
     });
 
     $(document).on('click', '.product-delete', function(){
@@ -204,6 +211,51 @@ function listarProductos(){
             $("#products").html(template);
         }
     })
+}
+
+function validaciones(datProductos){
+    var nombre = datProductos['nombre'];
+    var precio = datProductos['precio'];
+    var unidades = datProductos['unidades'];
+    var modelo = datProductos['modelo'];
+    var marca = datProductos['marca'];
+    var detalles = datProductos['detalles'];
+    var imagen = datProductos['imagen'];
+    var vali = 1;
+    //console.log(nombre + " " + precio + " " + unidades + " " + modelo + " " + marca + " " + detalles + " " + imagen )
+    if(nombre.length > 0 && nombre.length <= 100){
+        vali++;
+    }
+    if(marca.length > 0){
+        vali++;
+    }
+    if(modelo.length > 0 && modelo.length <= 25){
+        vali++;
+    }
+    if(!isNaN(precio) > 0 && (parseFloat(precio) > 99.9)){
+        vali++;
+    }
+        
+    if(detalles.length <= 255){
+        vali++;
+    }
+        
+    if(!isNaN(unidades) > 0 && parseInt(unidades) >= 0){
+        vali++;
+    }
+    if(imagen.length == 0 && vali == 7){
+        vali++;
+        //datProductos['imagen']= "img/default.jpg"
+        //console.log(datProductos['imagen'])
+    }
+    switch(vali){
+        case 7:
+            return 1;
+        case 8:
+            return 2;
+        default:
+            return 0;
+    }
 }
 
 // Todo lo demás se elimina pero lo voy a comentar por si las dudes
