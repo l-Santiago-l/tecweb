@@ -14,6 +14,7 @@ function init() {
      * Convierte el JSON a string para poder mostrarlo
      * ver: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON
      */
+    let edit = false;
     var JsonString = JSON.stringify(baseJSON,null,2);
     document.getElementById("description").value = JsonString;
     $('#product-result').hide(); 
@@ -53,6 +54,7 @@ function init() {
         var productoJsonString = document.getElementById('description').value;
         var finalJSON = JSON.parse(productoJsonString);
         finalJSON['nombre'] = document.getElementById('name').value;
+        finalJSON['id'] = document.getElementById('productId').value
         productoJsonString = JSON.stringify(finalJSON,null,2);
         //console.log(finalJSON);
         const postData = {
@@ -66,8 +68,21 @@ function init() {
             imagen: finalJSON['imagen'],*/
             obj: productoJsonString
         };
-        $.post('./backend/product-add.php', postData, function(response){
+
+        let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+
+        $.post(url, postData, function(response){
             $('#product-form').trigger('reset');
+            //console.log(response);
+            baseJSON = {
+                "precio": 0.0,
+                "unidades": 1,
+                "modelo": "XX-000",
+                "marca": "NA",
+                "detalles": "NA",
+                "imagen": "img/default.png"
+            };
+            JsonString = JSON.stringify(baseJSON,null,2);
             document.getElementById("description").value = JsonString;
             //console.log(response);
             let respuesta = JSON.parse(response);
@@ -115,6 +130,39 @@ function init() {
     $(document).on('click', '.product-item', function(){
         let product = $(this)[0].parentElement.parentElement; 
         let id = $(product).attr('productId');
+        $.ajax({
+            url: './backend/product-single.php',
+            type: 'GET',
+            data: {id},
+            success: function (response){
+                let respuesta = JSON.parse(response);
+                console.log(respuesta);
+                $('#name').val(respuesta.nombre);
+                $('#productId').val(respuesta.id)
+                baseJSON['precio'] = respuesta.precio;
+                baseJSON['unidades'] = respuesta.unidades;
+                baseJSON['modelo'] = respuesta.modelo;
+                baseJSON['marca'] = respuesta.marca;
+                baseJSON['detalles'] = respuesta.detalles;
+                baseJSON['imagen'] = respuesta.imagen;
+                JsonString = JSON.stringify(baseJSON,null,2);
+                document.getElementById("description").value = JsonString;
+                edit = true;
+
+                /*let respuesta = JSON.parse(response);
+                let template_bar = '';
+                template_bar += `
+                            <li style="list-style: none;">status: ${respuesta.status}</li>
+                            <li style="list-style: none;">message: ${respuesta.message}</li>
+                        `;
+
+                // SE HACE VISIBLE LA BARRA DE ESTADO
+                document.getElementById("product-result").className = "card my-4 d-block";
+                // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
+                document.getElementById("container").innerHTML = template_bar;
+                listarProductos();*/
+            }
+        });
     });
 }
 
