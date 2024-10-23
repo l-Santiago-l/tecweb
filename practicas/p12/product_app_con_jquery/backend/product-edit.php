@@ -7,8 +7,6 @@
     );
     
     if(isset($_POST['obj'])){
-        //$jsonOBJ = json_decode($_POST['obj']);
-        //echo "UPDATE productos SET nombre='{$jsonOBJ->nombre}', marca='{$jsonOBJ->marca}', modelo='{$jsonOBJ->modelo}', precio='{$jsonOBJ->precio}', detalles='{$jsonOBJ->detalles}', unidades='{$jsonOBJ->unidades}', imagen='{$jsonOBJ->imagen}' WHERE id={$jsonOBJ->id}";
         // Como se mando un obj tipo Json
         $jsonOBJ = json_decode($_POST['obj']);
         $sql = "UPDATE productos SET nombre='{$jsonOBJ->nombre}', marca='{$jsonOBJ->marca}', modelo='{$jsonOBJ->modelo}', precio='{$jsonOBJ->precio}', detalles='{$jsonOBJ->detalles}', unidades='{$jsonOBJ->unidades}', imagen='{$jsonOBJ->imagen}' WHERE id={$jsonOBJ->id}";
