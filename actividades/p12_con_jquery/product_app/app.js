@@ -127,11 +127,6 @@ $(document).ready(function(){
         postData['nombre'] = $('#name').val();
         postData['id'] = $('#productId').val();
 
-        /**
-         * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
-         * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
-         **/
-
         const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
         
         $.post(url, postData, (response) => {
@@ -194,3 +189,30 @@ $(document).ready(function(){
         e.preventDefault();
     });    
 });
+
+
+function comprobarVal(){
+    var aux = 1;
+    if ($("inNom").val() != '')
+        aux++;
+    if ($("inMarca").val() != '')
+        aux++;
+    if ($("inModelo").val() != '')
+        aux++;
+    if ($("inPrecio").val() != '')
+        aux++;
+    if ($("inUni").val() != '')
+        aux++;
+    if ($("inImg").val() == ''){
+        $("inImg").val('img/default.jpg');
+    }
+    if ($("inDet").val() != '')
+        aux++;
+    if(aux == 7){
+        return true;
+    }
+    else{
+        alert("Faltan campos por llenar");
+        return false;
+    }
+}

@@ -9,7 +9,7 @@
     <?php
         require_once __DIR__ . 'Tabla.php';
 
-        $tab = new Tabña(2, 3, 'border: 1px solid');
+        $tab = new Tabla(2, 3, 'border: 1px solid');
         $tab->cargar(0, 0, 'A');
         $tab->cargar(0, 1, 'B');
         $tab->cargar(0, 2, 'C');
