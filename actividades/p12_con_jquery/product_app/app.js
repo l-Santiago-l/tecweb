@@ -12,7 +12,7 @@ $(document).ready(function(){
     let edit = false;
 
     let JsonString = JSON.stringify(baseJSON,null,2);
-    $('#description').val(JsonString);
+    //$('#description').val(JsonString);
     $('#product-result').hide();
     listarProductos();
 
@@ -44,7 +44,7 @@ $(document).ready(function(){
                                 <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
-                                    <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                                    <button class="product-delete btn btn-danger">
                                         Eliminar
                                     </button>
                                 </td>
@@ -122,35 +122,45 @@ $(document).ready(function(){
         e.preventDefault();
 
         // SE CONVIERTE EL JSON DE STRING A OBJETO
-        let postData = JSON.parse( $('#description').val() );
-        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-        postData['nombre'] = $('#name').val();
+        //let postData = JSON.parse( $('#description').val() );
+        let postData = baseJSON;
         postData['id'] = $('#productId').val();
+        postData['nombre'] = $('#name').val();
+        postData['precio'] = $('#inPrecio').val();
+        postData['unidades'] = $('#inUni').val();
+        postData['modelo'] = $('#inModelo').val();
+        postData['marca'] = $('#inMarca').val();
+        postData['detalles'] = $('#inDet').val();
+        postData['imagen'] = $('#inImg').val();
 
-        const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+        // Se hace la validación de los campos NO VACIOS
+        if(comprobarVal()){
+            const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
         
-        $.post(url, postData, (response) => {
-            //console.log(response);
-            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-            let respuesta = JSON.parse(response);
-            // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
-            let template_bar = '';
-            template_bar += `
-                        <li style="list-style: none;">status: ${respuesta.status}</li>
-                        <li style="list-style: none;">message: ${respuesta.message}</li>
-                    `;
-            // SE REINICIA EL FORMULARIO
-            $('#name').val('');
-            $('#description').val(JsonString);
-            // SE HACE VISIBLE LA BARRA DE ESTADO
-            $('#product-result').show();
-            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-            $('#container').html(template_bar);
-            // SE LISTAN TODOS LOS PRODUCTOS
-            listarProductos();
-            // SE REGRESA LA BANDERA DE EDICIÓN A false
-            edit = false;
-        });
+            $.post(url, postData, (response) => {
+                //console.log(response);
+                // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                let respuesta = JSON.parse(response);
+                // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
+                let template_bar = '';
+                template_bar += `
+                            <li style="list-style: none;">status: ${respuesta.status}</li>
+                            <li style="list-style: none;">message: ${respuesta.message}</li>
+                        `;
+                // SE REINICIA EL FORMULARIO
+                $('#name').val('');
+                //$('#description').val(JsonString);
+                // SE HACE VISIBLE LA BARRA DE ESTADO
+                $('#product-result').show();
+                // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
+                $('#container').html(template_bar);
+                // SE LISTAN TODOS LOS PRODUCTOS
+                listarProductos();
+                // SE REGRESA LA BANDERA DE EDICIÓN A false
+                edit = false;
+            });
+        }
+        
     });
 
     $(document).on('click', '.product-delete', (e) => {
@@ -160,6 +170,7 @@ $(document).ready(function(){
             $.post('./backend/product-delete.php', {id}, (response) => {
                 $('#product-result').hide();
                 listarProductos();
+                window.alert('Producto Elimnado Correctamente :D');
             });
         }
     });
@@ -179,9 +190,15 @@ $(document).ready(function(){
             delete(product.eliminado);
             delete(product.id);
             // SE CONVIERTE EL OBJETO JSON EN STRING
-            let JsonString = JSON.stringify(product,null,2);
+            $('#inPrecio').val(product.precio);
+            $('#inUni').val(product.unidades);
+            $('#inModelo').val(product.modelo);
+            $('#inMarca').val(product.marca);
+            $('#inDet').val(detalles);
+            $('#inImg').val(product.img);    
+            //let JsonString = JSON.stringify(product,null,2);
             // SE MUESTRA STRING EN EL <textarea>
-            $('#description').val(JsonString);
+            //$('#description').val(JsonString);
             
             // SE PONE LA BANDERA DE EDICIÓN EN true
             edit = true;
@@ -193,22 +210,23 @@ $(document).ready(function(){
 
 function comprobarVal(){
     var aux = 1;
-    if ($("inNom").val() != '')
+    if ($("#inNom").val() != '')
         aux++;
-    if ($("inMarca").val() != '')
+    if ($("#inMarca").val() != '')
         aux++;
-    if ($("inModelo").val() != '')
+    if ($("#inModelo").val() != '')
         aux++;
-    if ($("inPrecio").val() != '')
+    if ($("#inPrecio").val() != '')
         aux++;
-    if ($("inUni").val() != '')
+    if ($("#inUni").val() != '')
         aux++;
-    if ($("inImg").val() == ''){
-        $("inImg").val('img/default.jpg');
+    if ($("#inImg").val() == ''){
+        $("#inImg").val('img/default.jpg');
     }
     if ($("inDet").val() != '')
         aux++;
     if(aux == 7){
+        alert("Campos validos");
         return true;
     }
     else{
