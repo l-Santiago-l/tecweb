@@ -194,8 +194,8 @@ $(document).ready(function(){
             $('#inUni').val(product.unidades);
             $('#inModelo').val(product.modelo);
             $('#inMarca').val(product.marca);
-            $('#inDet').val(detalles);
-            $('#inImg').val(product.img);    
+            $('#inDet').val(product.detalles);
+            $('#inImg').val(product.imagen);    
             //let JsonString = JSON.stringify(product,null,2);
             // SE MUESTRA STRING EN EL <textarea>
             //$('#description').val(JsonString);
