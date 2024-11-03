@@ -70,6 +70,7 @@ function validarTam(control, lbl, lim){
 function validarObligatoriosL(control, lbl){
     if($(control).val() == '' ){
         $(lbl).css("display", "block");
+        $(lbl).html("<strong> Este campo es obligatorio</strong>");
         //console.log("aparece");
         //document.getElementById(lbl).style.display = "block";
     }
@@ -85,12 +86,13 @@ function validarObligatoriosN(control, lbl, min){
     if($(control).val() == '' ){
         $(lbl).css("display", "block");
         //l.style.display = "block";
-        $(lbl).html = "<strong> Este campo es obligatorio</strong>";
+        $(lbl).html("<strong> Este campo es REQUERIDO</strong>");
     }
     else{
         if(parseInt($(control).val()) < min){
+            $(control).val("")
             $(lbl).css("display", "block");
-            $(lbl).html = "<strong>  Debe ser un valor <= " + min + "</strong>";
+            $(lbl).html("<strong>  Debe ser un valor <= " + min + "</strong>");
         }
         else
         $(lbl).css("display", "none");

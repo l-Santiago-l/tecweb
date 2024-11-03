@@ -58,6 +58,40 @@ $(document).ready(function(){
         });
     }
 
+    /////////////////////////////////////////////
+    $('#name').on("blur", function(e){//blur(function(){
+        $('#product-result').hide();
+        if($('#name').val()) {
+            let name = $('#name').val();
+            $.ajax({
+                url: './backend/product-search.php?name='+$('#name').val(),
+                data: {name},
+                type: 'GET',
+                success: function (response) {
+                    if(!response.error) {
+                        // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                        const productos = JSON.parse(response);
+                        
+                        // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+                        if(Object.keys(productos).length > 0) {
+                            // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
+                            $('#product-result').html("<p> El nombre dado NO es valido </p>");
+                        }
+                        else{
+                            $('#product-result').html("<p> El nombre dado es valido </p>");
+                        }
+                    }
+                }
+
+            });
+            $('#product-result').show();
+        }
+        else {
+            $('#product-result').hide();
+        }
+    });
+    /////////////////////////////////////////////
+
     $('#search').keyup(function() {
         if($('#search').val()) {
             let search = $('#search').val();
@@ -158,6 +192,7 @@ $(document).ready(function(){
                 listarProductos();
                 // SE REGRESA LA BANDERA DE EDICIÓN A false
                 edit = false;
+                limpiar();
             });
         }
         
@@ -233,4 +268,15 @@ function comprobarVal(){
         alert("Faltan campos por llenar");
         return false;
     }
+}
+
+function limpiar(){
+    $('#name').val('');
+    $('#productId').val('');
+    $('#inPrecio').val('');
+    $('#inUni').val('');
+    $('#inModelo').val('');
+    $('#inMarca').val('');
+    $('#inDet').val('');
+    $('#inImg').val(''); 
 }
