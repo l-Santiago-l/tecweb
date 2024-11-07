@@ -1,12 +1,13 @@
 <?php
     namespace myapi;
-    use myapi\Products as Products;
+    use Products\Products;
     include_once __DIR__.'/myapi/Products.php';
     $products = new Products('marketzone');
     if(isset($_POST['id'])){
         $products->delete($_POST['id']);
+        echo $products->getData();
     }
-    echo $products->getData();
+    
     /*include_once __DIR__.'/database.php';
 
     // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON

@@ -75,19 +75,17 @@ $(document).ready(function(){
                         // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
                         if(Object.keys(productos).length > 0) {
                             // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
-                            $('#product-result').html("<p> El nombre dado NO es valido </p>");
+                            window.alert("El nombre dado NO es valido");
                         }
                         else{
-                            $('#product-result').html("<p> El nombre dado es valido </p>");
+                            window.alert("El nombre dado es valido");
                         }
                     }
                 }
 
             });
-            $('#product-result').show();
         }
         else {
-            $('#product-result').hide();
         }
     });
     /////////////////////////////////////////////

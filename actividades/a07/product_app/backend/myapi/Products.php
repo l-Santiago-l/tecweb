@@ -1,8 +1,8 @@
 <?php 
-    namespace myapi;
-    use myapi\DataBase as DataBase;
+    namespace Products;
+    use DataBase\DataBase;
     require_once __DIR__ . '/DataBase.php';
-    class DataBase extends DataBase{
+    class Products extends DataBase{
         private $data;
     
         public function __construct($db, $user = 'root', $pass='1234') {
@@ -107,14 +107,14 @@
 
         public function search($cad) {
             // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
-            $this->$data = array();
+            $this->data = array();
             // SE VERIFICA HABER RECIBIDO EL ID
             $sql = "";
             #if(isset($_GET['search'])){
             $search = $cad;
             // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
             $sql = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
-            if ( $result = $conexion->query($sql) ) {
+            if ( $result = $this->conexion->query($sql) ) {
                 // SE OBTIENEN LOS RESULTADOS
                 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -160,7 +160,7 @@
 
         public function singleByName($name) {
             // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
-            $this->$data = array();
+            $this->data = array();
             // SE VERIFICA HABER RECIBIDO EL ID
             $sql = "";
             #if(isset($_GET['name'])){
@@ -168,7 +168,7 @@
             // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
             $sql = "SELECT * FROM productos WHERE nombre = '$name'";
         
-            if ( $result = $conexion->query($sql) ) {
+            if ( $result = $this->conexion->query($sql) ) {
                 // SE OBTIENEN LOS RESULTADOS
                 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -189,7 +189,7 @@
         }
 
         public function getData() {
-            echo json_encode($this->data, JSON_PRETTY_PRINT);
+            return json_encode($this->data, JSON_PRETTY_PRINT);
         }
     }
 ?>

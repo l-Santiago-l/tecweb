@@ -1,12 +1,12 @@
 <?php
     namespace myapi;
-    use myapi\Products as Products;
+    use Products\Products;
     include_once __DIR__.'/myapi/Products.php';
     $products = new Products('marketzone');
     if(isset($_POST['nombre'])){
-        $products->add($_POST['nombre']);
+        $products->add($_POST);
+        echo $products->getData();
     }
-    echo $products->getData();
     /*include_once __DIR__.'/database.php';
     // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
     $data = array(

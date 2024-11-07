@@ -1,5 +1,5 @@
 <?php
-namespace myapi;
+namespace DataBase;
 class DataBase {
     protected $conexion;
 

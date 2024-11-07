@@ -1,12 +1,16 @@
 <?php
     namespace myapi;
-    use myapi\Products as Products;
+    use Products\Products;
     include_once __DIR__.'/myapi/Products.php';
     $products = new Products('marketzone');
     if(isset($_GET['search'])){
-        $products->singleByName($_GET['search']);
+        $products->search($_GET['search']);
+        echo $products->getData();
     }
-    echo $products->getData();
+    else if(isset($_GET['name'])){
+        $products->singleByName($_GET['name']);
+        echo $products->getData();
+    }
 
     /*include_once __DIR__.'/database.php';
 

@@ -1,6 +1,6 @@
 <?php
     namespace myapi;
-    use myapi\Products as Products;
+    use Products\Products;
     include_once __DIR__.'/myapi/Products.php';
     $products = new Products('marketzone');
     $products->list();
