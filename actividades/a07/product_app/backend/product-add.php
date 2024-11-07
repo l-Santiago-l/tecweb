@@ -1,6 +1,13 @@
 <?php
-    include_once __DIR__.'/database.php';
-
+    namespace myapi;
+    use myapi\Products as Products;
+    include_once __DIR__.'/myapi/Products.php';
+    $products = new Products('marketzone');
+    if(isset($_POST['nombre'])){
+        $products->add($_POST['nombre']);
+    }
+    echo $products->getData();
+    /*include_once __DIR__.'/database.php';
     // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
     $data = array(
         'status'  => 'error',
@@ -30,5 +37,5 @@
     }
 
     // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
+    echo json_encode($data, JSON_PRETTY_PRINT);*/
 ?>
