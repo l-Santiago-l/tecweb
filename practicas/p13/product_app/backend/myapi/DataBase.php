@@ -1,26 +1,18 @@
 <?php
-namespace TECWEB\MYAPI;
-
-abstract class DataBase {
+namespace DataBase;
+class DataBase {
     protected $conexion;
 
-    public function __construct($db, $user, $pass) {
+    public function __construct($user, $pass, $db) {
         $this->conexion = @mysqli_connect(
             'localhost',
             $user,
             $pass,
             $db
         );
-    
-        /**
-         * NOTA: si la conexión falló $conexion contendrá false
-         **/
-        if(!$this->conexion) {
-            die('¡Base de datos NO conextada!');
-        }
-        /*else {
-            echo 'Base de datos encontrada';
-        }*/
+        # Esto es para validar que si se realice la conexión
+        if(!$this->conexion)
+            $this->conexion = Null;
     }
 }
 ?>

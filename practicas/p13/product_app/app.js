@@ -12,7 +12,7 @@ $(document).ready(function(){
     let edit = false;
 
     let JsonString = JSON.stringify(baseJSON,null,2);
-    $('#description').val(JsonString);
+    //$('#description').val(JsonString);
     $('#product-result').hide();
     listarProductos();
 
@@ -21,7 +21,6 @@ $(document).ready(function(){
             url: './backend/product-list.php',
             type: 'GET',
             success: function(response) {
-                console.log(response);
                 // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
                 const productos = JSON.parse(response);
             
@@ -58,6 +57,38 @@ $(document).ready(function(){
             }
         });
     }
+
+    /////////////////////////////////////////////
+    $('#name').on("blur", function(e){//blur(function(){
+        $('#product-result').hide();
+        if($('#name').val()) {
+            let name = $('#name').val();
+            $.ajax({
+                url: './backend/product-search.php?name='+$('#name').val(),
+                data: {name},
+                type: 'GET',
+                success: function (response) {
+                    if(!response.error) {
+                        // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                        const productos = JSON.parse(response);
+                        
+                        // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+                        if(Object.keys(productos).length > 0) {
+                            // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
+                            window.alert("El nombre dado NO es valido");
+                        }
+                        else{
+                            window.alert("El nombre dado es valido");
+                        }
+                    }
+                }
+
+            });
+        }
+        else {
+        }
+    });
+    /////////////////////////////////////////////
 
     $('#search').keyup(function() {
         if($('#search').val()) {
@@ -123,40 +154,46 @@ $(document).ready(function(){
         e.preventDefault();
 
         // SE CONVIERTE EL JSON DE STRING A OBJETO
-        let postData = JSON.parse( $('#description').val() );
-        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-        postData['nombre'] = $('#name').val();
+        //let postData = JSON.parse( $('#description').val() );
+        let postData = baseJSON;
         postData['id'] = $('#productId').val();
+        postData['nombre'] = $('#name').val();
+        postData['precio'] = $('#inPrecio').val();
+        postData['unidades'] = $('#inUni').val();
+        postData['modelo'] = $('#inModelo').val();
+        postData['marca'] = $('#inMarca').val();
+        postData['detalles'] = $('#inDet').val();
+        postData['imagen'] = $('#inImg').val();
 
-        /**
-         * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
-         * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
-         **/
-
-        const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+        // Se hace la validación de los campos NO VACIOS
+        if(comprobarVal()){
+            const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
         
-        $.post(url, postData, (response) => {
-            console.log(response);
-            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-            let respuesta = JSON.parse(response);
-            // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
-            let template_bar = '';
-            template_bar += `
-                        <li style="list-style: none;">status: ${respuesta.status}</li>
-                        <li style="list-style: none;">message: ${respuesta.message}</li>
-                    `;
-            // SE REINICIA EL FORMULARIO
-            $('#name').val('');
-            $('#description').val(JsonString);
-            // SE HACE VISIBLE LA BARRA DE ESTADO
-            $('#product-result').show();
-            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-            $('#container').html(template_bar);
-            // SE LISTAN TODOS LOS PRODUCTOS
-            listarProductos();
-            // SE REGRESA LA BANDERA DE EDICIÓN A false
-            edit = false;
-        });
+            $.post(url, postData, (response) => {
+                //console.log(response);
+                // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                let respuesta = JSON.parse(response);
+                // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
+                let template_bar = '';
+                template_bar += `
+                            <li style="list-style: none;">status: ${respuesta.status}</li>
+                            <li style="list-style: none;">message: ${respuesta.message}</li>
+                        `;
+                // SE REINICIA EL FORMULARIO
+                $('#name').val('');
+                //$('#description').val(JsonString);
+                // SE HACE VISIBLE LA BARRA DE ESTADO
+                $('#product-result').show();
+                // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
+                $('#container').html(template_bar);
+                // SE LISTAN TODOS LOS PRODUCTOS
+                listarProductos();
+                // SE REGRESA LA BANDERA DE EDICIÓN A false
+                edit = false;
+                limpiar();
+            });
+        }
+        
     });
 
     $(document).on('click', '.product-delete', (e) => {
@@ -166,6 +203,7 @@ $(document).ready(function(){
             $.post('./backend/product-delete.php', {id}, (response) => {
                 $('#product-result').hide();
                 listarProductos();
+                window.alert('Producto Elimnado Correctamente :D');
             });
         }
     });
@@ -185,9 +223,15 @@ $(document).ready(function(){
             delete(product.eliminado);
             delete(product.id);
             // SE CONVIERTE EL OBJETO JSON EN STRING
-            let JsonString = JSON.stringify(product,null,2);
+            $('#inPrecio').val(product.precio);
+            $('#inUni').val(product.unidades);
+            $('#inModelo').val(product.modelo);
+            $('#inMarca').val(product.marca);
+            $('#inDet').val(product.detalles);
+            $('#inImg').val(product.imagen);    
+            //let JsonString = JSON.stringify(product,null,2);
             // SE MUESTRA STRING EN EL <textarea>
-            $('#description').val(JsonString);
+            //$('#description').val(JsonString);
             
             // SE PONE LA BANDERA DE EDICIÓN EN true
             edit = true;
@@ -195,3 +239,42 @@ $(document).ready(function(){
         e.preventDefault();
     });    
 });
+
+
+function comprobarVal(){
+    var aux = 1;
+    if ($("#inNom").val() != '')
+        aux++;
+    if ($("#inMarca").val() != '')
+        aux++;
+    if ($("#inModelo").val() != '')
+        aux++;
+    if ($("#inPrecio").val() != '')
+        aux++;
+    if ($("#inUni").val() != '')
+        aux++;
+    if ($("#inImg").val() == ''){
+        $("#inImg").val('img/default.jpg');
+    }
+    if ($("inDet").val() != '')
+        aux++;
+    if(aux == 7){
+        alert("Campos validos");
+        return true;
+    }
+    else{
+        alert("Faltan campos por llenar");
+        return false;
+    }
+}
+
+function limpiar(){
+    $('#name').val('');
+    $('#productId').val('');
+    $('#inPrecio').val('');
+    $('#inUni').val('');
+    $('#inModelo').val('');
+    $('#inMarca').val('');
+    $('#inDet').val('');
+    $('#inImg').val(''); 
+}
