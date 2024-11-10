@@ -13,8 +13,8 @@
             );
             $this->data = array();
             # Esto es para validar que si se realice la conexión
-            if(!$this->conexion)
-                $this->conexion = Null;
+            #if(!$this->conexion)
+            #    $this->conexion = Null;
         }
 
         public function getData(){
