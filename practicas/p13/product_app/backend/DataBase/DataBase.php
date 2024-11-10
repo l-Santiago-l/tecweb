@@ -1,4 +1,5 @@
 <?php
+    namespace TECWEB\DB;
     abstract class DataBase {
         protected $conexion;
         protected $data;
