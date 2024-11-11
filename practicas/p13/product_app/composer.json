@@ -1,0 +1,19 @@
+{
+    "name": "leond/product_app",
+    "autoload": {
+        "psr-4": {
+            "TECWEB\\DB\\": "backend/DataBase/",
+            "TECWEB\\READ\\": "backend/Read/",
+            "TECWEB\\CREATE\\": "backend/Create/",
+            "TECWEB\\DELETE\\": "backend/Delete/",
+            "TECWEB\\UPDATE\\": "backend/Update/"
+        }
+    },
+    "authors": [
+        {
+            "name": "l-Santiago-l",
+            "email": "diego.leonh@alumno.buap.mx"
+        }
+    ],
+    "require": {}
+}

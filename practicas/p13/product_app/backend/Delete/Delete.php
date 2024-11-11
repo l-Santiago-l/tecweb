@@ -1,7 +1,8 @@
 <?php
     namespace TECWEB\DELETE;
     use TECWEB\DB\DataBase;
-    include_once __DIR__.'/../DataBase/DataBase.php';
+    #include_once __DIR__.'/../DataBase/DataBase.php';
+    include_once __DIR__.'/../../vendor/autoload.php';
     class Delete extends DataBase{
 
         public function __construct($db, $user = 'root', $pass='1234') {
