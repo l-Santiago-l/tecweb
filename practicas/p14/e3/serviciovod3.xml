@@ -2,37 +2,33 @@
 <catalogoVod>
     <cuenta correo="diego.leonh@alumno.buap.mx">
         <perfiles>
-            <perfi usuario="Diego Henández" idioma="Español"></perfi>
-            <perfi usuario="Santiago León" idioma="Español"></perfi>
+            <perfil usuario="Diego Henández" idioma="Español"></perfil>
+            <perfil usuario="Santiago León" idioma="Español"></perfil>
         </perfiles>
     </cuenta>
     <contenido>
         <peliculas>
             <genero nombre="Suspenso">
-                <titulo duracion="127">Se7en</titulo>
-                <titulo duracion="153">La sospecha</titulo>
-                <titulo duracion="118">El silencio de los inocentes</titulo>
-                <titulo duracion="104">Los otros</titulo>
+                <titulo duracion="127">
+                    <video id="11">"&lt;" - Usando entidades predefinidas</video>
+                </titulo>
+                <titulo duracion="153">
+                    <video id="11"><![CDATA["<" - Usando seeción CDATA]]></video>
+                </titulo>
             </genero>
             <genero nombre="Terror Psicologíco">
                 <titulo duracion="90">Un lugar en silencio</titulo>
                 <titulo duracion="135">Eso</titulo>
-                <titulo duracion="81">El proyecto de la bruja de Blair</titulo>
-                <titulo duracion="138">La isla siniestra</titulo>
             </genero>
         </peliculas>
         <programas>
             <genero nombre="Caricaturas">
                 <titulo duracion="20">Steven Universe</titulo>
                 <titulo duracion="20">Hora de Aventura</titulo>
-                <titulo duracion="20">Teen Titans</titulo>
-                <titulo duracion="20">Pokemon</titulo>
             </genero>
             <genero nombre="Animé">
                 <titulo duracion="21">Death Note</titulo>
                 <titulo duracion="21">Shingeki no Kyojin</titulo>
-                <titulo duracion="21">Kimentsu no Yaiba</titulo>
-                <titulo duracion="21">Buko No Hero</titulo>
             </genero>
         </programas>
     </contenido>

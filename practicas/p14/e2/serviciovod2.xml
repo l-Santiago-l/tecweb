@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogoVod SYSTEM "serviciovod.dtd">
 <catalogoVod>
     <cuenta correo="diego.leonh@alumno.buap.mx">
         <perfiles>
-            <perfi usuario="Diego Henández" idioma="Español"></perfi>
-            <perfi usuario="Santiago León" idioma="Español"></perfi>
+            <perfil usuario="Diego Henández" idioma="Español"></perfil>
+            <perfil usuario="Santiago León" idioma="Español"></perfil>
         </perfiles>
     </cuenta>
     <contenido>
