@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico >
+    <tarjeta noserie="uno" visitas="diez" puntos="10.0(diez)">
+        <nombre>Diego Santiago León Henández</nombre>
+        <correo>diego.leonh@alumno.buap.mx</correo>
+        <!-- Esto sería opcional -->
+        <telefono tipo="movil">2441503517</telefono>
+        <!-- Este es aún más opcional -->
+        <telefono tipo="casa">2444457660</telefono>
+    </tarjeta>    
+</cinefanatico>
+    

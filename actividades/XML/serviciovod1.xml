@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogoVod>
+    <cuenta>
+        <correo>diego.leonh@alumno.buap.mx</correo>
+        <perfiles>
+            <perfi>
+                <usuario>Diego Henández</usuario>
+                <idioma>Español</idioma>
+            </perfi>
+            <perfi>
+                <usuario>Santiago León</usuario>
+                <idioma>Español</idioma>
+            </perfi>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Suspenso</nombre>
+                <titulo>
+                    <nombre>Se7en</nombre>
+                    <duracion>127</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>La sospecha</nombre>
+                    <duracion>153</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El silencio de los inocentes</nombre>
+                    <duracion>118</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Los otros</nombre>
+                    <duracion>104</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Terror Psicologíco</nombre>
+                <titulo>
+                    <nombre>Un lugar en silencio</nombre>
+                    <duracion>90</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Eso</nombre>
+                    <duracion>135</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El proyecto de la bruja de Blair</nombre>
+                    <duracion>81</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>La isla siniestra</nombre>
+                    <duracion>138</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero>
+                <nombre>Caricaturas</nombre>
+                <titulo>
+                    <nombre>Steven Universe</nombre>
+                    <duracion>20</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Hora de Aventura</nombre>
+                    <duracion>20</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Teen Titans</nombre>
+                    <duracion>20</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Pokemon</nombre>
+                    <duracion>20</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Animé</nombre>
+                <titulo>
+                    <nombre>Death Note</nombre>
+                    <duracion>21</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Shingeki no Kyojin</nombre>
+                    <duracion>21</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Kimentsu no Yaiba</nombre>
+                    <duracion>21</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Buko No Hero</nombre>
+                    <duracion>21</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</catalogoVod>
