@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogoVod>
+    <cuenta correo="diego.leonh@alumno.buap.mx">
+        <perfiles>
+            <perfil usuario="Diego Henández" idioma="Español"></perfil>
+            <perfil usuario="Santiago León" idioma="Español"></perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero nombre="Suspenso">
+                <titulo duracion="127">
+                    <video id="11">"&lt;" - Usando entidades predefinidas</video>
+                </titulo>
+                <titulo duracion="153">
+                    <video id="11"><![CDATA["<" - Usando sección CDATA]]></video>
+                </titulo>
+            </genero>
+            <genero nombre="Terror Psicologíco">
+                <titulo duracion="90">Un lugar en silencio</titulo>
+                <titulo duracion="135">Eso</titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero nombre="Caricaturas">
+                <titulo duracion="20">Steven Universe</titulo>
+                <titulo duracion="20">Hora de Aventura</titulo>
+            </genero>
+            <genero nombre="Animé">
+                <titulo duracion="21">Death Note</titulo>
+                <titulo duracion="21">Shingeki no Kyojin</titulo>
+            </genero>
+        </programas>
+    </contenido>
+</catalogoVod>
