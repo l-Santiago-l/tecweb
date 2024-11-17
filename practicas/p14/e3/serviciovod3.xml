@@ -13,7 +13,7 @@
                     <video id="11">"&lt;" - Usando entidades predefinidas</video>
                 </titulo>
                 <titulo duracion="153">
-                    <video id="11"><![CDATA["<" - Usando seeción CDATA]]></video>
+                    <video id="11"><![CDATA["<" - Usando sección CDATA]]></video>
                 </titulo>
             </genero>
             <genero nombre="Terror Psicologíco">

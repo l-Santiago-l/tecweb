@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE catalogoVod SYSTEM "serviciovod.dtd">
 <catalogoVod>
-    <cuenta correo="diego.leonh@alumno.buap.mx">
-        <perfiles>
-            <perfil usuario="Diego Henández" idioma="Español"></perfil>
-            <perfil usuario="Santiago León" idioma="Español"></perfil>
-        </perfiles>
-    </cuenta>
+    <cuenta correo="diego.leonh@alumno.buap.mx"/>
     <contenido>
         <peliculas>
             <genero nombre="Suspenso">

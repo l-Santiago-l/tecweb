@@ -8,7 +8,7 @@
 <!ELEMENT genero (titulo)+>
 <!ELEMENT perfil (#PCDATA)>
 <!ATTLIST cuenta correo CDATA #REQUIRED>
-<!ATTLIST peliculas region (MEX|USA|ESP|ARG|KOR) "USA">
+<!ATTLIST peliculas region (USA|ESP|ARG|KOR) "USA">
 <!ATTLIST series region (MEX|USA|ESP|ARG|KOR) "USA">
 <!ATTLIST perfil 
     usuario CDATA #REQUIRED
