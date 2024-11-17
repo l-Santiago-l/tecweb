@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Spotify xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="spotify.xsd">
+    <Cuenta id="000" plan="estudiantes" fechaIni="01/01/2025" fechaFin="01/02/2025">
+        <nombre>Diego Santiago León Hernández</nombre>
+        <correo>diego.leonh@alumno.buap.mx</correo>
+        <telefono tipo="movil">(+52)2441503517</telefono>
+    </Cuenta>
+</Spotify>
