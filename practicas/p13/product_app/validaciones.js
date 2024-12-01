@@ -49,7 +49,7 @@ $('#inDet').on("blur", function(e){//blur(function(){
 });
 
 
-// Funciones que as validaciones mandan a llamar
+// Funciones que las validaciones mandan a llamar
 function validarTam(control, lbl, lim){
     //var type =  e.inputType
     //var lbl = document.getElementById(lbl);
