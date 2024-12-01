@@ -21,9 +21,9 @@
 
     $app->get("/testjson", function($request, $response, $args){
         $data[0]["nombre"]="Diego";
-        $data[0]["apellido"]="León";    
+        $data[0]["apellido"]="Leon";    
         $data[1]["nombre"]="Santiago";
-        $data[1]["apellido"]="Hernández";
+        $data[1]["apellido"]="Hernandez";
         $response->write(json_encode($data, JSON_PRETTY_PRINT));
     });
 
